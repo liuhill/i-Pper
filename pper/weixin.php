@@ -65,8 +65,7 @@ class wechatCallbackapiTest
 			if(!strcasecmp("image",$MsgType))
 			{
 				$url = trim($postObj->PicUrl);
-				$filename = $fromUsername;
-				$this->getImg($url,$filename);  
+				$this->getImg($url,$fromUsername);  
 				$contentStr = "图片已经上墙\r请登录www.pper.com.cn找找你的图片在那块砖上。";
 			}
 			else
@@ -103,9 +102,9 @@ class wechatCallbackapiTest
 	}
 	
 	//获得图片同时保存缩略图
-	public function getImg($url,$filename)
+	public function getImg($url,$fromUsername)
 	{
-		if(is_dir(basename($filename))) {
+		if(is_dir(basename($fromUsername))) {
 			echo "The Dir was not exits";
 			Return false;
 		}
@@ -123,7 +122,7 @@ class wechatCallbackapiTest
 		list($msec,$sec) = explode ( " ", microtime () );  
 		$seq = str_replace('0.','~',$msec);
 
-		$filename .= '-'.date('YmdHis',$sec). $seq.'.jpg';
+		$filename = date('Ymd~His',$sec). $seq.'-'. $fromUsername .'.jpg';
 		
 		$hander = curl_init();
 		$fp = fopen($pathPhoto.$filename,'wb');

@@ -7,7 +7,7 @@ http-equiv="X-UA-Compatible">
 		 
 <META charset="utf-8">		 
 <META name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<TITLE>快拍客</TITLE>		 
+<TITLE>拍拍客</TITLE>		 
 <STYLE>
 			html, body {
 				height: 100%;
@@ -114,7 +114,7 @@ http-equiv="X-UA-Compatible">
 	$i = 0;
 	$files = array();
 	//$file
-	while (false !== ($file = readdir($dh)) && $i < 108) { //遍历该php文件所在目录
+	while (false !== ($file = readdir($dh)) ){//&& $i < 108) { //遍历该php文件所在目录
 		list($filesname,$kzm)=explode(".",$file);//获取扩展名
 		if($kzm=="gif" or $kzm=="jpg" or $kzm=="JPG" or $kzm=="png" or $kzm=="PNG") { //文件过滤
 		  if (!is_dir("./".$file)) { //文件夹过滤
@@ -154,11 +154,11 @@ http-equiv="X-UA-Compatible">
 		 
 <DIV id="container"></DIV>
 <DIV id="info">
-	我们不是摄影师，我们也不懂美工，我们只是喜欢随手拍拍而已。我们是————<font size="5" color="red">快拍客！</font>
+	随手拍的照片很多，大多数照片没什么特殊意义，也很少记得住。但是，偶尔也会想看看我拍的那些东西。我是一个——————<font size="5" color="red">拍拍客！</font>
 </DIV>
 <div>
 	<img src='img/weixin.jpg' width = '110px',height = '110px'></br>
-	<A href="http://www.kper.com.cn" target="_blank"><h1>快拍客</h1></A>
+	<A href="http://www.kper.com.cn" target="_blank"><h1>拍拍客</h1></A>
 	<font size="1" color="red">微信添加公共账号，发送图片</br>刷新！你的照片上墙了</font>
 
 </div>
@@ -170,7 +170,7 @@ http-equiv="X-UA-Compatible">
 	<BUTTON id="grid">矩阵墙</BUTTON>
 			 
 <SCRIPT>
-			//单页墙w18*h9
+			//建议值[9,9]
 			var table = [];
 			
 			var camera, scene, renderer;
@@ -191,7 +191,7 @@ http-equiv="X-UA-Compatible">
 				scene = new THREE.Scene();
 				
 				
-				for ( var i = 0; i < table.length; i ++ ) {
+				for ( var i = 0; i < table.length && i< 108; i ++ ) {
 
 					var element = document.createElement( 'div' );
 					element.className = 'element';
@@ -229,7 +229,7 @@ http-equiv="X-UA-Compatible">
 
 				}
 
-				// sphere 球形墙
+				// sphere
 
 				var vector = new THREE.Vector3();
 
@@ -252,7 +252,7 @@ http-equiv="X-UA-Compatible">
 
 				}
 
-				// helix 螺旋墙
+				// helix
 
 				var vector = new THREE.Vector3();
 
@@ -276,7 +276,7 @@ http-equiv="X-UA-Compatible">
 
 				}
 
-				// grid 矩阵墙
+				// grid
 
 				for ( var i = 0; i < objects.length; i ++ ) {
 
@@ -384,7 +384,6 @@ http-equiv="X-UA-Compatible">
 
 				TWEEN.update();
 				controls.update();
-
 
 			}
 

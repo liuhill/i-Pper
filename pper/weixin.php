@@ -53,6 +53,7 @@ class wechatCallbackapiTest
             $toUsername = $postObj->ToUserName;
 			$MsgType = $postObj->MsgType;
             $time = time();
+			$contentStr = "对不起，我们只能够处理图片。";
 			$textTpl = "<xml>
 						<ToUserName><![CDATA[%s]]></ToUserName>
 						<FromUserName><![CDATA[%s]]></FromUserName>
@@ -66,18 +67,15 @@ class wechatCallbackapiTest
 				$url = trim($postObj->PicUrl);
 				$filename = $fromUsername;
 				$this->getImg($url,$filename);  
-				$contentStr = "图片已经上墙\r请登录www.kper.com.cn找找你的图片在那块砖上。";
+				$contentStr = "图片已经上墙\r请登录www.pper.com.cn找找你的图片在那块砖上。";
 			}
 			else
 			{
 				
-				$contentStr = "对不起，我们只能够处理图片。";
-				//返回消息
-				$msgType = "text";
-				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-
 			}
-
+			//回复消息
+			$msgType = "text";
+			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 			echo $resultStr;
         }else {
         	echo "";
@@ -146,13 +144,13 @@ class wechatCallbackapiTest
 		//生成缩略图		
 		Return true;
 	}
-		/*等比例缩略图
+		/*-----------等比例缩略图----------------------------
 		*filename 图片名称
 		*srcDir 源图片所在的文件夹
 		*disDir 保存的文件夹
 		*distWidth 目标宽度
 		*distHeight 目标高度
-		*/
+		---------------------------------------------------*/
 	public function resizeImg($filename,$srcDir,$disDir,$distWidth,$distHeight)
 	{
 		// Content type

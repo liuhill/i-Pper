@@ -178,11 +178,15 @@ http-equiv="X-UA-Compatible">
 
 			var objects = [];
 			var targets = { table: [], sphere: [], helix: [], grid: [] };
+
+
+		    isBrowser();
+
 			
 			getImgs();
 			init();
 			animate();
-
+			
 			function init() {
 
 				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -449,7 +453,22 @@ http-equiv="X-UA-Compatible">
 				}	
 			}
 
-		
+			//判断浏览器类型
+		function isBrowser(){
+		  var Sys={};
+		  var ua=navigator.userAgent.toLowerCase();
+		  var s;
+		  (s=ua.match(/msie ([\d.]+)/))?Sys.ie=s[1]:
+		  (s=ua.match(/firefox\/([\d.]+)/))?Sys.firefox=s[1]:
+		  (s=ua.match(/chrome\/([\d.]+)/))?Sys.chrome=s[1]:
+		  (s=ua.match(/opera.([\d.]+)/))?Sys.opera=s[1]:
+		  (s=ua.match(/version\/([\d.]+).*safari/))?Sys.safari=s[1]:0;
+		  if(!Sys.chrome){//Js判断为谷歌chrome浏览器
+			  alert('3D效果目前只测试过谷歌浏览器chrome');
+		  }
+		}
+
+			
 		</SCRIPT>
 	 </DIV>
  </BODY>

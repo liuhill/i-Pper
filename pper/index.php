@@ -113,6 +113,7 @@ http-equiv="X-UA-Compatible">
 	$dh = opendir('./'.$dir); //当前目录
 	$i = 0;
 	$files = array();
+	$displayFiles ;
 	//$file
 	while (false !== ($file = readdir($dh)) ){//&& $i < 108) { //遍历该php文件所在目录
 		list($filesname,$kzm)=explode(".",$file);//获取扩展名
@@ -134,6 +135,13 @@ http-equiv="X-UA-Compatible">
     }
 
     array_multisort($time,SORT_DESC,SORT_STRING, $files);//按时间排序
+	
+	//显示最新的108张
+	$count = 108;
+	if(count($files) > $count)  
+		$displayFiles = array_slice($files,0,$count);
+	else
+		$displayFiles = $files;
 ?>
 
 	<link href="css/lightbox.css" rel="stylesheet" />
@@ -154,7 +162,7 @@ http-equiv="X-UA-Compatible">
 		 
 <DIV id="container"></DIV>
 <DIV id="info">
-	随手拍的照片很多，大多数照片没什么特殊意义，也很少记得住。但是，偶尔也会想看看我拍的那些东西。我是一个——————<font size="5" color="red">拍拍客！</font>
+	我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————<font size="6" color="red">拍拍客！</font>
 </DIV>
 <div>
 	<img src='img/weixin.jpg' width = '110px',height = '110px'></br>
@@ -164,10 +172,10 @@ http-equiv="X-UA-Compatible">
 </div>
 
 <DIV id="menu">
-	<BUTTON id="table">单页墙</BUTTON>
-	<BUTTON id="sphere">球形墙</BUTTON>
-	<BUTTON id="helix">螺旋墙</BUTTON>
-	<BUTTON id="grid">矩阵墙</BUTTON>
+	<BUTTON id="table">照片墙</BUTTON>
+	<BUTTON id="sphere">水晶球</BUTTON>
+	<BUTTON id="helix">螺旋塔</BUTTON>
+	<BUTTON id="grid">展览室</BUTTON>
 			 
 <SCRIPT>
 			//建议值[9,9]
@@ -195,7 +203,7 @@ http-equiv="X-UA-Compatible">
 				scene = new THREE.Scene();
 				
 				
-				for ( var i = 0; i < table.length && i< 108; i ++ ) {
+				for ( var i = 0; i < table.length ; i ++ ) {
 
 					var element = document.createElement( 'div' );
 					element.className = 'element';
@@ -435,7 +443,7 @@ http-equiv="X-UA-Compatible">
 			
 			//获得指定文件夹图片名称列表
 			function getImgs (){
-				var arrfiles = <?php echo json_encode($files);?>;
+				var arrfiles = <?php echo json_encode($displayFiles);?>;
 				var row =1;
 				var col = 1;
 				for(var i = 0; i < arrfiles.length;i++)

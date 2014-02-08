@@ -168,9 +168,15 @@ http-equiv="X-UA-Compatible">
 <DIV>
 	<img src='img/weixin.jpg' width = '130px',height = '130px'></br>
 	<font size="3" color="white">使用方法:</br><font size="1" color="red">1）微信添加公共账号</br>2）发送图片</br>3）刷新！</br>~~你的照片上墙了~</font></br>
-	
-
 </DIV>
+
+<div align="right">
+	<h3>3D效果图</h3></br>
+	<img src='img/table.gif' width = '80px',height = '80px'></br>
+	<img src='img/sphere.gif'  width = '80px',height = '80px'></br>	
+	<img src='img/helix.gif'  width = '80px',height = '80px'></br>
+	<img src='img/grid.gif'  width = '80px',height = '80px'></br>
+</div>
 
 <DIV id="menu">
 	<BUTTON id="table">照片墙</BUTTON>

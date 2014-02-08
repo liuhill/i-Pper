@@ -163,13 +163,14 @@ http-equiv="X-UA-Compatible">
 <DIV id="container"></DIV>
 <DIV id="info">
 	我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————<font size="6" color="red">拍拍客！</font>
+	<A href="https://github.com/liuhill/i-Pper" target="_blank">源代码</A>
 </DIV>
-<div>
-	<img src='img/weixin.jpg' width = '110px',height = '110px'></br>
-	<A href="http://www.kper.com.cn" target="_blank"><h1>拍拍客</h1></A>
-	<font size="1" color="red">微信添加公共账号，发送图片</br>刷新！你的照片上墙了</font>
+<DIV>
+	<img src='img/weixin.jpg' width = '130px',height = '130px'></br>
+	<font size="3" color="white">使用方法:</br><font size="1" color="red">1）微信添加公共账号</br>2）发送图片</br>3）刷新！</br>~~你的照片上墙了~</font></br>
+	
 
-</div>
+</DIV>
 
 <DIV id="menu">
 	<BUTTON id="table">照片墙</BUTTON>
@@ -178,7 +179,7 @@ http-equiv="X-UA-Compatible">
 	<BUTTON id="grid">展览室</BUTTON>
 			 
 <SCRIPT>
-			//建议值[9,9]
+			//建议值[18,6]
 			var table = [];
 			
 			var camera, scene, renderer;
@@ -441,7 +442,7 @@ http-equiv="X-UA-Compatible">
 					image.style.paddingTop = ((distHeight - heigh)/2).toString() + 'px';
 			} 	
 			
-			//获得指定文件夹图片名称列表
+			//获得指定文件夹图片名称列表，同时设置图片的位置
 			function getImgs (){
 				var arrfiles = <?php echo json_encode($displayFiles);?>;
 				var row =1;

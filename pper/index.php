@@ -183,7 +183,22 @@ http-equiv="X-UA-Compatible">
 	<BUTTON id="sphere">水晶球</BUTTON>
 	<BUTTON id="helix">螺旋塔</BUTTON>
 	<BUTTON id="grid">展览室</BUTTON>
-			 
+
+<SCRIPT>	
+		//判断浏览器类型
+		var Sys={};
+		  var ua=navigator.userAgent.toLowerCase();
+		  var s;
+		  (s=ua.match(/msie ([\d.]+)/))?Sys.ie=s[1]:
+		  (s=ua.match(/firefox\/([\d.]+)/))?Sys.firefox=s[1]:
+		  (s=ua.match(/chrome\/([\d.]+)/))?Sys.chrome=s[1]:
+		  (s=ua.match(/opera.([\d.]+)/))?Sys.opera=s[1]:
+		  (s=ua.match(/version\/([\d.]+).*safari/))?Sys.safari=s[1]:0;
+		  if(!(Sys.chrome || Sys.firefox)){//Js判断为谷歌chrome、火狐firefox浏览器
+			  document.write('</br><font size="1" color="white">查看3D效果请使用：谷歌chrome、火狐firefox</font>');
+		  }
+</SCRIPT>	
+	
 <SCRIPT>
 			//建议值[18,6]
 			var table = [];
@@ -195,7 +210,7 @@ http-equiv="X-UA-Compatible">
 			var targets = { table: [], sphere: [], helix: [], grid: [] };
 
 
-		    isBrowser();
+//		    isBrowser();
 
 			
 			getImgs();

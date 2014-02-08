@@ -472,8 +472,8 @@ http-equiv="X-UA-Compatible">
 		  (s=ua.match(/chrome\/([\d.]+)/))?Sys.chrome=s[1]:
 		  (s=ua.match(/opera.([\d.]+)/))?Sys.opera=s[1]:
 		  (s=ua.match(/version\/([\d.]+).*safari/))?Sys.safari=s[1]:0;
-		  if(!Sys.chrome){//Js判断为谷歌chrome浏览器
-			  alert('3D效果目前只测试过谷歌浏览器chrome');
+		  if(!(Sys.chrome || Sys.firefox)){//Js判断为谷歌chrome浏览器
+			  alert('3D效果仅测试浏览器：谷歌chrome、火狐firefox');
 		  }
 		}
 

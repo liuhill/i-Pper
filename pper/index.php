@@ -182,7 +182,7 @@ http-equiv="X-UA-Compatible">
 	<BUTTON id="table">照片墙</BUTTON>
 	<BUTTON id="sphere">水晶球</BUTTON>
 	<BUTTON id="helix">螺旋塔</BUTTON>
-	<BUTTON id="grid">展览室</BUTTON>
+	<BUTTON id="grid">展览厅</BUTTON>
 
 <SCRIPT>	
 		//判断浏览器类型

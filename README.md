@@ -29,18 +29,16 @@
 
 3、使用方法
 ----
->###1）申请微信公共账号
->登录weixin.qq.com申请微信公共账号，并下载二维码图片
->
->###2）下载源代码解压
+>###1）下载源代码解压
 >源代码地址：https://github.com/liuhill/i-Pper/archive/master.zip
 >
->###3）修改公共账号
+>###2）修改公共账号图片
 >将./img/weixin.jpg修改为自己的微信公共账号二维码图片
->###4）修改公共账号token
+>###3）修改token
 >在./weixin.php中修改token
+> ```
 >		define("TOKEN", "hillock");
-
+>```
 
 4、demo
 ----

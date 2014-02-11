@@ -6,8 +6,8 @@
 1、功能
 ----
 通过微信公共账号（以后会添加来往、易信等）发送图片。采用three.js显示3D照片墙，共有4中样式分别如下
-###1）照片墙
-![table](http://www.pper.com.cn/img/table.gif)  
+###1）照片墙\2)水晶球
+![table](http://www.pper.com.cn/img/table.gif)  ![sphere](http://www.pper.com.cn/img/sphere.gif)  
 ###2）水晶球
 ![sphere](http://www.pper.com.cn/img/sphere.gif)  
 ###3）螺旋塔
@@ -21,12 +21,12 @@
 ###1)绚丽
 		采用Three.js的3D样式，打破了传统照片墙单调乏味的风格
 ###2)互动
-通过微信就可以上传图片，大大简化互动环节。<br />
-可以手动拖动3D墙，增加趣味性。
-###3)架构极简主义、代码极简主义
-**no mvc！<br />
-**no database!!<br />
-**two php files
+		通过微信就可以上传图片，大大简化互动环节。<br />
+		可以手动拖动3D墙，增加趣味性。
+###3)代码极简主义
+		**no mvc！**<br />
+		**no database!!<br />
+		**two php files
 
 ###4)维护方便
 图片的名称采用格式：时间+openID.jpg格式。根据前端名称，后端可以方便的提取、修改或者删除图片。

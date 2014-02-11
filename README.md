@@ -3,17 +3,24 @@
 
 我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————拍拍客！
 
-功能
+1、功能
 ----
 通过微信公共账号（以后会添加来往、易信等）发送图片。采用three.js显示3D照片墙，共有4中样式分别如下
-###1、照片墙
+###1.1）照片墙
 ![table](http://www.pper.com.cn/img/table.gif)  
+###1.2）水晶球
+![sphere](http://www.pper.com.cn/img/sphere.gif)  
+###1.3）螺旋塔
+![helix](http://www.pper.com.cn/img/helix.gif)  
+###1.4）展览厅
+![grid](http://www.pper.com.cn/img/grid.gif)  
 
-产品特点
+
+2、产品特点
 ----
 
 
-使用方法
+3、使用方法
 ----
 ###1）申请微信公共账号
 登录weixin.qq.com申请微信公共账号，并下载二维码图片
@@ -28,7 +35,7 @@
 		define("TOKEN", "hillock");
 
 
-demo
+4、demo
 ----
 ###网址
 http://www.pper.com.cn/

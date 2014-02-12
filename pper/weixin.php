@@ -58,7 +58,7 @@ class wechatCallbackapiTest
 
 			if(!strcasecmp("image",$MsgType))
 			{
-/*
+
 				$textTpl = 	"<xml>
 								<ToUserName><![CDATA[%s]]></ToUserName>
 								<FromUserName><![CDATA[%s]]></FromUserName>
@@ -76,41 +76,28 @@ class wechatCallbackapiTest
 										<Title><![CDATA[%s]]></Title>
 										<Description><![CDATA[%s]]></Description>
 										<PicUrl><![CDATA[%s]]></PicUrl>
-									</item>
-								</Articles>
-							</xml> ";
-*/							
-				$textTpl = 	"<xml>
-								<ToUserName><![CDATA[%s]]></ToUserName>
-								<FromUserName><![CDATA[%s]]></FromUserName>
-								<CreateTime>%s</CreateTime>
-								<MsgType><![CDATA[news]]></MsgType>
-								<ArticleCount>1</ArticleCount>
-								<Articles>
-									<item>
-										<Title><![CDATA[%s]]></Title> 
-										<Description><![CDATA[%s]]></Description>
-										<PicUrl><![CDATA[%s]]></PicUrl>
-										<Url><![CDATA[%s]]></Url>	
+										<Url><![CDATA[%s]]></Url>
 									</item>
 								</Articles>
 							</xml> ";
 							
+
 				$url = trim($postObj->PicUrl);
 				$imgName = $this->getImg($url,$fromUsername);  
-/*			
-				$titleStr1 = "照片已经上墙";
+			
+				$titleStr1 = "3D照片已经上墙";
 				$Description1 = "查看3D效果请用chrome(谷歌)或者firefox(火狐)登录www.pper.com.cn。";
 				$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
-				$webUrl1 = "http://www.pper.com.cn";
-*/				
+				$webUrl1 = $picUrl1;	// "http://www.pper.com.cn";
+				
 				$titleStr2 = "照片已经上墙";
 				$Description2 = "请登录www.pper.com.cn找找你的图片在那块砖上。";
 				$picUrl2 = "http://www.pper.com.cn/photoResize/";		//说略图目录
 				$picUrl2 .= $imgName;
-//				$webUrl = "http://www.pper.com.cn";			
-
-				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr2,$Description2,$picUrl2,$webUrl);
+//				$webUrl = "http://www.baidu.com/img/bdlogo.gif";
+				$webUrl2	= "http://www.pper.com.cn/photo/".$imgName;
+				
+				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr1,$Description1,$picUrl1,$webUrl1,$titleStr2,$Description2,$picUrl2,$webUrl2);
 
 			}
 			else

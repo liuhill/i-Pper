@@ -53,28 +53,85 @@ class wechatCallbackapiTest
             $toUsername = $postObj->ToUserName;
 			$MsgType = $postObj->MsgType;
             $time = time();
-			$contentStr = "对不起，我们只能够处理图片。";
-			$textTpl = "<xml>
-						<ToUserName><![CDATA[%s]]></ToUserName>
-						<FromUserName><![CDATA[%s]]></FromUserName>
-						<CreateTime>%s</CreateTime>
-						<MsgType><![CDATA[%s]]></MsgType>
-						<Content><![CDATA[%s]]></Content>
-						<FuncFlag>0</FuncFlag>
-						</xml>";  
+			$textTpl = "";
+			$resultStr = "";
+
 			if(!strcasecmp("image",$MsgType))
 			{
+/*
+				$textTpl = 	"<xml>
+								<ToUserName><![CDATA[%s]]></ToUserName>
+								<FromUserName><![CDATA[%s]]></FromUserName>
+								<CreateTime>%s</CreateTime>
+								<MsgType><![CDATA[news]]></MsgType>
+								<ArticleCount>2</ArticleCount>
+								<Articles>
+									<item>
+										<Title><![CDATA[%s]]></Title> 
+										<Description><![CDATA[%s]]></Description>
+										<PicUrl><![CDATA[%s]]></PicUrl>
+										<Url><![CDATA[%s]]></Url>	
+									</item>
+									<item>
+										<Title><![CDATA[%s]]></Title>
+										<Description><![CDATA[%s]]></Description>
+										<PicUrl><![CDATA[%s]]></PicUrl>
+									</item>
+								</Articles>
+							</xml> ";
+*/							
+				$textTpl = 	"<xml>
+								<ToUserName><![CDATA[%s]]></ToUserName>
+								<FromUserName><![CDATA[%s]]></FromUserName>
+								<CreateTime>%s</CreateTime>
+								<MsgType><![CDATA[news]]></MsgType>
+								<ArticleCount>1</ArticleCount>
+								<Articles>
+									<item>
+										<Title><![CDATA[%s]]></Title> 
+										<Description><![CDATA[%s]]></Description>
+										<PicUrl><![CDATA[%s]]></PicUrl>
+										<Url><![CDATA[%s]]></Url>	
+									</item>
+								</Articles>
+							</xml> ";
+							
 				$url = trim($postObj->PicUrl);
-				$this->getImg($url,$fromUsername);  
-				$contentStr = "图片已经上墙\r请登录www.pper.com.cn找找你的图片在那块砖上。";
+				$imgName = $this->getImg($url,$fromUsername);  
+/*			
+				$titleStr1 = "照片已经上墙";
+				$Description1 = "查看3D效果请用chrome(谷歌)或者firefox(火狐)登录www.pper.com.cn。";
+				$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
+				$webUrl1 = "http://www.pper.com.cn";
+*/				
+				$titleStr2 = "照片已经上墙";
+				$Description2 = "请登录www.pper.com.cn找找你的图片在那块砖上。";
+				$picUrl2 = "http://www.pper.com.cn/photoResize/";		//说略图目录
+				$picUrl2 .= $imgName;
+//				$webUrl = "http://www.pper.com.cn";			
+
+				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr2,$Description2,$picUrl2,$webUrl);
+
 			}
 			else
 			{
-				
+
+				//只接收图片消息
+				$textTpl = "<xml>
+				<ToUserName><![CDATA[%s]]></ToUserName>
+				<FromUserName><![CDATA[%s]]></FromUserName>
+				<CreateTime>%s</CreateTime>
+				<MsgType><![CDATA[%s]]></MsgType>
+				<Content><![CDATA[%s]]></Content>
+				<FuncFlag>0</FuncFlag>
+				</xml>";  
+
+
+				$contentStr = "对不起，我们只能够处理图片。";
+				$msgType = "text";
+				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 			}
-			//回复消息
-			$msgType = "text";
-			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+			logger($resultStr);
 			echo $resultStr;
         }else {
         	echo "";
@@ -102,6 +159,7 @@ class wechatCallbackapiTest
 	}
 	
 	//获得图片同时保存缩略图
+	//返回文件名
 	public function getImg($url,$fromUsername)
 	{
 		if(is_dir(basename($fromUsername))) {
@@ -122,7 +180,7 @@ class wechatCallbackapiTest
 		list($msec,$sec) = explode ( " ", microtime () );  
 		$seq = str_replace('0.','~',$msec);
 
-		$filename = date('Ymd~His',$sec). $seq.'-'. $fromUsername .'.jpg';
+		$filename = date('Ymd~His',$sec). $seq.'-'.$fromUsername.'.jpg';
 		
 		$hander = curl_init();
 		$fp = fopen($pathPhoto.$filename,'wb');
@@ -141,7 +199,7 @@ class wechatCallbackapiTest
 		$this->resizeImg($filename,$pathPhoto,$pathPhotoResize,120,160);
 		
 		//生成缩略图		
-		Return true;
+		Return $filename;
 	}
 		/*-----------等比例缩略图----------------------------
 		*filename 图片名称
@@ -188,7 +246,7 @@ function logger($content)
 {
 	$debug = print_r($content,true);
 	//$debug = var_export($content,true);
-    file_put_contents("/home/wwwroot/hillock/log.html", date('Y-m-d H:i:s  ').$debug."<br>", FILE_APPEND);
+    file_put_contents("/home/wwwroot/pper/log.html", date('Y-m-d H:i:s  ').$debug."<br>", FILE_APPEND);
 }
 
 ?>

@@ -100,6 +100,37 @@ class wechatCallbackapiTest
 				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr1,$Description1,$picUrl1,$webUrl1,$titleStr2,$Description2,$picUrl2,$webUrl2);
 
 			}
+			elseif(!strcasecmp("event",$MsgType))
+			{
+				$event =  $postObj->Event;
+				if(!strcasecmp("subscribe",$event))
+				{
+					//订阅用户，发送欢饮消息
+					$textTpl = 	"<xml>
+									<ToUserName><![CDATA[%s]]></ToUserName>
+									<FromUserName><![CDATA[%s]]></FromUserName>
+									<CreateTime>%s</CreateTime>
+									<MsgType><![CDATA[news]]></MsgType>
+									<ArticleCount>1</ArticleCount>
+									<Articles>
+										<item>
+											<Title><![CDATA[%s]]></Title> 
+											<Description><![CDATA[%s]]></Description>
+											<PicUrl><![CDATA[%s]]></PicUrl>
+											<Url><![CDATA[%s]]></Url>	
+										</item>
+									</Articles>
+								</xml> ";
+								
+
+					$titleStr1 = "欢迎加入拍拍客，拍点什么吧~~";
+					$Description1 = "我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————拍拍客！(www.pper.com.cn)";
+					$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
+					$webUrl1 = $picUrl1;	// "http://www.pper.com.cn";
+					
+					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr1,$Description1,$picUrl1,$webUrl1);
+				}
+			}			
 			else
 			{
 
@@ -118,7 +149,6 @@ class wechatCallbackapiTest
 				$msgType = "text";
 				$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 			}
-			logger($resultStr);
 			echo $resultStr;
         }else {
         	echo "";

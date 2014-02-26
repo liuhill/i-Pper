@@ -137,7 +137,7 @@ http-equiv="X-UA-Compatible">
     array_multisort($time,SORT_DESC,SORT_STRING, $files);//按时间排序
 	
 	//显示最新的108张
-	$count = 108;
+	$count = 72;
 	if(count($files) > $count)  
 		$displayFiles = array_slice($files,0,$count);
 	else
@@ -367,8 +367,8 @@ http-equiv="X-UA-Compatible">
 
 				}, false );
 
-				//transform( targets.table, 5000 );
-				transform( targets.helix, 2000 );
+				transform( targets.table, 5000 );
+				//transform( targets.helix, 2000 );
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );

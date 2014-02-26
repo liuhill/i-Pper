@@ -1,0 +1,124 @@
+
+html{
+	font-family: "microsoft yahei",arial;
+ 	font-size: 100%;
+}
+body{
+	margin:0;
+}
+li{
+	list-style: none;
+}
+
+/*navigation bar*/
+nav{
+	background-color: #333;
+}
+
+ nav li{
+ 	display: inline-block;
+ 	padding-right: 10px;
+ }
+ nav li a{
+ 	text-decoration: none;
+ 	color: white;
+ 	font-size: 1.5em;
+ }
+ nav li a:hover,#menuIcon:hover{
+ 	color:#DDD;
+ }
+
+#menuIcon{
+	display: none;
+	color: white;
+	font-weight: bold;
+	font-size: 2em;
+	text-decoration: none;
+	font-family: arial;
+}
+
+
+/*sidebar*/
+aside{
+	width: 15%;
+	float: left;
+}
+
+/*post*/
+.post{
+	width: 70%;
+	margin: 0 auto;
+	float: left;
+}
+
+ /*grid layout*/
+ .grid{
+
+ }
+ .grid .item{
+ 	width: 25%;
+ 	height: 150px;
+ 	background-color: #DDD;
+ 	display: inline-block;
+ }
+
+img{
+	max-width: 100%;
+}
+
+@media only screen and (max-width : 650px) {  
+aside{
+	display: none;
+	}
+	.post{
+		width: 100%;
+		float: none;
+		padding: 5px;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+	.grid{
+		width: 100%;
+	}
+	.grid .item{
+			width: 32%;
+		}
+}
+
+@media screen and (max-width: 500px){
+	nav ul{
+		display: none;
+		padding:0;
+		margin: 0 5px;
+	}
+	#menuIcon{
+		display: block;
+		text-align: right;
+		padding: 0 5px;
+		border-bottom: 1px #9c9c9c solid;
+	}
+	nav ul li{
+		width: 100%;
+	}
+	nav ul li:hover{
+		background-color: #555;
+	}
+}
+@media screen and (max-width: 420px){
+	.grid .item{
+		width: 100%;
+		margin-bottom: 5px;
+	}
+}
+
+ /*footer*/
+ footer{
+ 	width: 100%;
+ 	text-align: center;
+ 	clear:both;
+ }
+
+ footer li{
+ 	display: inline-block;
+ }

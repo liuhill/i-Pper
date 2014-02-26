@@ -88,7 +88,7 @@ class wechatCallbackapiTest
 				$titleStr1 = "3D照片已经上墙";
 				$Description1 = "查看3D效果请用chrome(谷歌)或者firefox(火狐)登录www.pper.com.cn。";
 				$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
-				$webUrl1 = $picUrl1;	// "http://www.pper.com.cn";
+				$webUrl1 = "http://www.pper.com.cn/3Ddemo.html";
 				
 				$titleStr2 = "照片已经上墙";
 				$Description2 = "请登录www.pper.com.cn找找你的图片在那块砖上。";
@@ -126,7 +126,7 @@ class wechatCallbackapiTest
 					$titleStr1 = "欢迎加入拍拍客，拍点什么吧~~";
 					$Description1 = "我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————拍拍客！(www.pper.com.cn)";
 					$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
-					$webUrl1 = $picUrl1;	// "http://www.pper.com.cn";
+					$webUrl1 = "http://www.pper.com.cn/3Ddemo.html";
 					
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr1,$Description1,$picUrl1,$webUrl1);
 				}

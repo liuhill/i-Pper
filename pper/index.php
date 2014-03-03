@@ -106,45 +106,14 @@ http-equiv="X-UA-Compatible">
 			}
 		</STYLE>
 	 
-<META name="GENERATOR" content="MSHTML 11.00.9600.16476">
-
-<?php
-	$dir = "photoResize";
-	$dh = opendir('./'.$dir); //当前目录
-	$i = 0;
-	$files = array();
-	$displayFiles ;
-	//$file
-	while (false !== ($file = readdir($dh)) ){//&& $i < 108) { //遍历该php文件所在目录
-		list($filesname,$kzm)=explode(".",$file);//获取扩展名
-		if($kzm=="gif" or $kzm=="jpg" or $kzm=="JPG" or $kzm=="png" or $kzm=="PNG") { //文件过滤
-		  if (!is_dir("./".$file)) { //文件夹过滤
-			$files[$i]["name"] = $file;//获取文件名称
-			$files[$i]["size"] = round((filesize($dir .'/'.$file)/1024),2);//获取文件大小
-			$files[$i]["time"] = date("Y-m-d H:i:s",filemtime($dir .'/'.$file));//获取文件最近修改日期
-			$i++;//记录图片总张数
-		   }
-		  }
-	}
-    closedir($dh);
-
-    foreach($files as $k=>$v){
-        $size[$k] = $v['size'];
-        $time[$k] = $v['time'];
-        $name[$k] = $v['name'];
-    }
-
-    array_multisort($time,SORT_DESC,SORT_STRING, $files);//按时间排序
-	
-	//显示最新的108张
-	$count = 72;
-	if(count($files) > $count)  
-		$displayFiles = array_slice($files,0,$count);
-	else
-		$displayFiles = $files;
-?>
+	<META name="GENERATOR" content="MSHTML 11.00.9600.16476">
 
 	<link href="css/lightbox.css" rel="stylesheet" />
+
+	<?php 
+		include 'config.php';
+	?>
+	
 </HEAD>	 
 <BODY>
 	
@@ -465,7 +434,9 @@ http-equiv="X-UA-Compatible">
 			
 			//获得指定文件夹图片名称列表，同时设置图片的位置
 			function getImgs (){
-				var arrfiles = <?php echo json_encode($displayFiles);?>;
+				var arrfiles = <?php
+									echo json_encode($photoObj -> getPhotos(PHOTORZ_DN,PHOTORZ_MAX));
+								?>;
 				var row =1;
 				var col = 1;
 				for(var i = 0; i < arrfiles.length;i++)
@@ -498,7 +469,6 @@ http-equiv="X-UA-Compatible">
 		  }
 		}
 
-			
 		</SCRIPT>
 	 </DIV>
  </BODY>

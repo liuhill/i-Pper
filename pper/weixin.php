@@ -4,7 +4,8 @@
   */
 
 //define your token
-define("TOKEN", "hillock");
+//define("TOKEN", "hillock");
+require_once 'config.php';
 $wechatObj = new wechatCallbackapiTest();
 $wechatObj->index();
 
@@ -12,9 +13,10 @@ $wechatObj->index();
 
 class wechatCallbackapiTest
 {
-
+	
 	public function index()
 	{
+
 		if ( $_SERVER['REQUEST_METHOD']=="POST") 
 		{ 
 			$this->responseMsg();
@@ -83,8 +85,17 @@ class wechatCallbackapiTest
 							
 
 				$url = trim($postObj->PicUrl);
-				$imgName = $this->getImg($url,$fromUsername);  
-			
+				logger("-----------url-----------");
+				try   
+				{
+					global $photoObj;
+					$imgName = $photoObj->savePhoto($url,$fromUsername);  
+				}
+				catch(Exception $e)
+				{
+					logger($e->getMessage());
+				}
+				
 				$titleStr1 = "3D照片已经上墙";
 				$Description1 = "查看3D效果请用chrome(谷歌)或者firefox(火狐)登录www.pper.com.cn。";
 				$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
@@ -175,95 +186,8 @@ class wechatCallbackapiTest
 		}
 	}
 	
-	//获得图片同时保存缩略图
-	//返回文件名
-	public function getImg($url,$fromUsername)
-	{
-		if(is_dir(basename($fromUsername))) {
-			echo "The Dir was not exits";
-			Return false;
-		}
-		//去除URL连接上面可能的引号
-		$url = preg_replace( '/(?:^[\'"]+|[\'"\/]+$)/', '', $url );
 
-		/*
-		*filename:文件名
-		*pathPhoto：图片目录
-		*pathPhotoResize：缩略图路径
-		*/
-		$pathPhoto = './photo/';
-		$pathPhotoResize = './photoResize/';
-		
-		list($msec,$sec) = explode ( " ", microtime () );  
-		$seq = str_replace('0.','~',$msec);
-
-		$filename = date('Ymd~His',$sec). $seq.'-'.$fromUsername.'.jpg';
-		
-		$hander = curl_init();
-		$fp = fopen($pathPhoto.$filename,'wb');
-
-		curl_setopt($hander,CURLOPT_URL,$url);
-		curl_setopt($hander,CURLOPT_FILE,$fp);
-		curl_setopt($hander,CURLOPT_HEADER,0);
-		curl_setopt($hander,CURLOPT_FOLLOWLOCATION,1);
-	  //curl_setopt($hander,CURLOPT_RETURNTRANSFER,false);//以数据流的方式返回数据,当为false是直接显示出来
-		curl_setopt($hander,CURLOPT_TIMEOUT,60);
-
-		curl_exec($hander);
-		curl_close($hander);
-		fclose($fp);
-
-		$this->resizeImg($filename,$pathPhoto,$pathPhotoResize,120,160);
-		
-		//生成缩略图		
-		Return $filename;
-	}
-		/*-----------等比例缩略图----------------------------
-		*filename 图片名称
-		*srcDir 源图片所在的文件夹
-		*disDir 保存的文件夹
-		*distWidth 目标宽度
-		*distHeight 目标高度
-		---------------------------------------------------*/
-	public function resizeImg($filename,$srcDir,$disDir,$distWidth,$distHeight)
-	{
-		// Content type
-		//header('Content-type: image/jpeg');
-		// Get new dimensions
-		list($width, $height) = getimagesize($srcDir.$filename);
-		$percent = 1;
-		if($width /$height >= $distWidth/$distHeight)
-			{
-				
-				if($width > $distWidth)
-				{
-					$percent = $distWidth/$width;
-				}
-			} 
-			else
-			{
-				if($height > $distHeight)
-				{
-					$percent = $distHeight/$height;
-				}
-			}
-		$new_width = $width * $percent;
-		$new_height = $height * $percent;
-		//创建新的图片此图片的标志为$image_p
-		$image_p = imagecreatetruecolor($new_width, $new_height);
-		$image = imagecreatefromjpeg($srcDir.$filename);
-		imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-		
-		// Output
-		imagejpeg($image_p, $disDir.$filename, 100);//quality为图片输出的质量范围从 0（最差质量，文件更小）到 100（最佳质量，文件最大）。
-	}
 }
 
-function logger($content)
-{
-	$debug = print_r($content,true);
-	//$debug = var_export($content,true);
-    file_put_contents("/home/wwwroot/pper/log.html", date('Y-m-d H:i:s  ').$debug."<br>", FILE_APPEND);
-}
 
 ?>

@@ -85,7 +85,6 @@ class wechatCallbackapiTest
 							
 
 				$url = trim($postObj->PicUrl);
-				logger("-----------url-----------");
 				try   
 				{
 					global $photoObj;
@@ -96,12 +95,12 @@ class wechatCallbackapiTest
 					logger($e->getMessage());
 				}
 				
-				$titleStr1 = "3D照片已经上墙";
+				$titleStr1 = "照片已经上墙，手机用户请在wifi下浏览或者登陆www.pper.com.cn。";
 				$Description1 = "查看3D效果请用chrome(谷歌)或者firefox(火狐)登录www.pper.com.cn。";
-				$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
-				$webUrl1 = "http://www.pper.com.cn/3Ddemo.html";
+				$picUrl1 = "http://www.pper.com.cn/img/3dShow.jpg";  
+				$webUrl1 = "http://www.pper.com.cn";
 				
-				$titleStr2 = "照片已经上墙";
+				$titleStr2 = "你刚刚在墙上粘贴的照片";
 				$Description2 = "请登录www.pper.com.cn找找你的图片在那块砖上。";
 				$picUrl2 = "http://www.pper.com.cn/photoResize/";		//说略图目录
 				$picUrl2 .= $imgName;
@@ -136,9 +135,8 @@ class wechatCallbackapiTest
 
 					$titleStr1 = "欢迎加入拍拍客，拍点什么吧~~";
 					$Description1 = "我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————拍拍客！(www.pper.com.cn)";
-					$picUrl1 = "http://www.pper.com.cn/img/helix.gif";  //显示螺旋塔动画
-					$webUrl1 = "http://www.pper.com.cn/3Ddemo.html";
-					
+					$picUrl1 = "http://www.pper.com.cn/img/3dShow.jpg";  
+					$webUrl1 = "http://www.pper.com.cn";					
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time,$titleStr1,$Description1,$picUrl1,$webUrl1);
 				}
 			}			

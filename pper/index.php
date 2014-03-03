@@ -104,6 +104,19 @@ http-equiv="X-UA-Compatible">
 				color: #000000;
 				background-color: rgba(0,255,255,0.75);
 			}
+			
+			@media screen and (max-width: 800px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+				#weixin {
+					display: none;
+				}
+				
+				#demo {
+					display: none;
+				}
+				#info {
+					display: none;
+				}
+			}
 		</STYLE>
 	 
 	<META name="GENERATOR" content="MSHTML 11.00.9600.16476">
@@ -134,12 +147,18 @@ http-equiv="X-UA-Compatible">
 	我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————<font size="6" color="red">拍拍客！</font>
 	<A href="https://github.com/liuhill/i-Pper" target="_blank">源代码</A>
 </DIV>
-<DIV>
+<DIV id="weixin" >
 	<img src='img/weixin.jpg' width = '130px',height = '130px'></br>
-	<font size="3" color="white">使用方法:</br><font size="1" color="red">1）微信添加公共账号</br>2）发送图片</br>3）刷新！</br>~~你的照片上墙了~</font></br>
+	<font size="3" color="white">使用方法:</font></br>
+	<font size="1" color="red">1）微信添加公共账号</br>
+								2）发送图片</br>
+								3）刷新！</br>
+								~~你的照片上墙了~
+	</font>
+
 </DIV>
 
-<div align="right">
+<div id="demo" >
 	<h3>3D效果图</h3></br>
 	<img src='img/table.gif' width = '80px',height = '80px'></br>
 	<img src='img/sphere.gif'  width = '80px',height = '80px'></br>	

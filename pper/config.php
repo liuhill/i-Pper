@@ -5,7 +5,7 @@
 	define("DEBUG_OUTPUT","/home/wwwroot/pper/log.html");//调试输出文件夹
 
 	define("TOKEN", "hillock");			//微信token
-
+	define("WEB4WX", 'http://'.$_SERVER['HTTP_HOST']);
 	require 'photo.php';
 	
 	//调试函数

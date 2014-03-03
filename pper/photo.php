@@ -57,7 +57,6 @@ class photo
 	//返回文件名
 	public function savePhoto($url,$fromUsername)
 	{
-		logger("savePhoto------------1");	
 
 		if(is_dir(basename($fromUsername))) {
 			echo "The Dir was not exits";
@@ -65,7 +64,6 @@ class photo
 		}
 		//去除URL连接上面可能的引号
 		$url = preg_replace( '/(?:^[\'"]+|[\'"\/]+$)/', '', $url );
-		logger("savePhoto------------2");	
 		
 		//*filename:文件名
 		//*pathPhoto：图片目录
@@ -73,7 +71,6 @@ class photo
 		//
 		$pathPhoto = './'.PHOTO_DN.'/';
 		$pathPhotoResize = './'.PHOTORZ_DN .'/';
-		logger('pathPhoto-------'.$pathPhoto.'-----');		
 		list($msec,$sec) = explode ( " ", microtime () );  
 		$seq = str_replace('0.','~',$msec);
 

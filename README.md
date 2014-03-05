@@ -26,8 +26,7 @@
 ####2.3 代码极简主义
     +   No MVC！
     +   No DB!
-    +   2 PHP files
-
+	
 ####2.4 维护方便
 	图片的名称采用格式：时间+openID。根据前端名称，后端可以方便的提取、修改或者删除图片，也可以根据openID追溯来源。
 
@@ -36,12 +35,12 @@
 ####3.1 下载源代码解压
 https://github.com/liuhill/i-Pper/archive/master.zip
 
-####3.2 修改公共账号图片
+####3.2 编辑公共账号
 	将./img/weixin.jpg修改为自己的微信公共账号二维码图片
-####3.3 修改token
-  在./weixin.php中修改token
+####3.3 配置
+  在config.php中修改微信公共账号token
 ```
-    define("TOKEN", "hillock");
+    define("TOKEN", "你的token");
 ```
 ####4）开始图片上墙吧~~~~
 
@@ -54,6 +53,6 @@ http://www.pper.com.cn/
 ####4.2 使用方法
 	1)关注微信公共账号
 	2)发送图片给该账号
-	3)刷新网页
+	3)刷新网页，照片上墙了~~~~
 
 
